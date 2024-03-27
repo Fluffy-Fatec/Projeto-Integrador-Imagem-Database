@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS user;
+DROP TABLE IF EXISTS app_user;
 CREATE TABLE app_user (
     id SERIAL PRIMARY KEY,
     username VARCHAR(255),
@@ -18,8 +18,7 @@ CREATE TABLE invite (
     solicitante VARCHAR(255),
     tokenInvite VARCHAR(255),
     typeUser VARCHAR(255),
-    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (solicitante) REFERENCES user(username)
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 DROP TABLE IF EXISTS review;
