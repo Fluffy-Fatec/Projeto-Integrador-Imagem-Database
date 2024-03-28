@@ -18,7 +18,7 @@ CREATE TABLE invite (
     solicitante VARCHAR(255),
     tokenInvite VARCHAR(255),
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(username)
+    CONSTRAINT fk_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(id)
 );
 
 DROP TABLE IF EXISTS review;
