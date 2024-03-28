@@ -17,10 +17,10 @@ CREATE TABLE app_user (
 CREATE TABLE invite (
     id SERIAL PRIMARY KEY,
     email VARCHAR(255),
-    solicitante SERIAL,
+    solicitante INTEGER,
     tokenInvite VARCHAR(255),
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(id)
+    CONSTRAINT fk_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE review (
