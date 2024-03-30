@@ -1,6 +1,8 @@
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS invite;
+DROP TABLE IF EXISTS alteracao_campo;
 DROP TABLE IF EXISTS app_user;
+
 
 CREATE TABLE app_user (
     id SERIAL PRIMARY KEY,
@@ -36,3 +38,19 @@ CREATE TABLE review (
     long NUMERIC,
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+
+CREATE TABLE alteracao_campo (
+    id SERIAL PRIMARY KEY,
+    idUser INTEGER,
+    colunaAlterada VARCHAR(255),
+    antigoValor VARCHAR(255),
+    novoValor VARCHAR(255),
+    status VARCHAR(20) DEFAULT 'pendente', 
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    dataAprovacao TIMESTAMP, 
+    dataRejeicao TIMESTAMP, 
+    admin_id INTEGER, 
+    CONSTRAINT fk_user_id FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE
+);
+
