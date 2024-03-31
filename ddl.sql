@@ -22,7 +22,7 @@ CREATE TABLE invite (
     solicitante INTEGER,
     tokenInvite VARCHAR(255),
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    CONSTRAINT fk_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(id) ON DELETE CASCADE
+    CONSTRAINT fk_invite_solicitante FOREIGN KEY (solicitante) REFERENCES app_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE review (
@@ -39,10 +39,10 @@ CREATE TABLE review (
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-
 CREATE TABLE alteracao_campo (
     id SERIAL PRIMARY KEY,
     idUser INTEGER,
+    solicitacao TEXT,
     colunaAlterada VARCHAR(255),
     antigoValor VARCHAR(255),
     novoValor VARCHAR(255),
@@ -51,6 +51,27 @@ CREATE TABLE alteracao_campo (
     dataAprovacao TIMESTAMP, 
     dataRejeicao TIMESTAMP, 
     admin_id INTEGER, 
-    CONSTRAINT fk_user_id FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE
+    CONSTRAINT fk_alteracao_campo_user_id FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE
 );
+
+CREATE TABLE termo (
+    id SERIAL PRIMARY KEY,
+    termo TEXT,
+    versao VARCHAR(255),
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE status_termo (
+    id SERIAL PRIMARY KEY,
+    idTermo INTEGER,
+    idUser INTEGER,
+    status VARCHAR(20), 
+    dataAprovacao TIMESTAMP,
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_status_termo_user_id FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE,
+    CONSTRAINT fk_status_termo_termo_id FOREIGN KEY (idTermo) REFERENCES termo(id) ON DELETE CASCADE
+);
+
+
+
 
