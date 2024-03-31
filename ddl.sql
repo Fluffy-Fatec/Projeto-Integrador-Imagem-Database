@@ -1,8 +1,9 @@
 DROP TABLE IF EXISTS review;
 DROP TABLE IF EXISTS invite;
 DROP TABLE IF EXISTS alteracao_campo;
+DROP TABLE IF EXISTS status_termo;
+DROP TABLE IF EXISTS termo;
 DROP TABLE IF EXISTS app_user;
-
 
 CREATE TABLE app_user (
     id SERIAL PRIMARY KEY,
