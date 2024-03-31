@@ -43,16 +43,17 @@ CREATE TABLE review (
 CREATE TABLE alteracao_campo (
     id SERIAL PRIMARY KEY,
     idUser INTEGER,
-    solicitacao TEXT,
-    colunaAlterada VARCHAR(255),
-    antigoValor VARCHAR(255),
-    novoValor VARCHAR(255),
-    status VARCHAR(20) DEFAULT 'pendente', 
-    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    idAdmin INTEGER,
+    novoUsername VARCHAR(255),
+    novoPassword VARCHAR(255),
+    novoNome VARCHAR(255),
+    novoEmail VARCHAR(255),
+    novoCelular VARCHAR(255),
+    novoCpf VARCHAR(255),
+    status VARCHAR(20), 
     dataAprovacao TIMESTAMP, 
     dataRejeicao TIMESTAMP, 
-    admin_id INTEGER, 
-    CONSTRAINT fk_alteracao_campo_user_id FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE termo (
