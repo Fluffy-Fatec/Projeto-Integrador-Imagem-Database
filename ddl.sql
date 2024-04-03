@@ -11,15 +11,15 @@ CREATE TABLE app_user (
     password VARCHAR(255),
     role VARCHAR(255),
     nome VARCHAR(255),
-    email VARCHAR(255),
-    celular VARCHAR(255),
-    cpf VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    celular VARCHAR(255) UNIQUE,
+    cpf VARCHAR(255) UNIQUE,
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE invite (
     id SERIAL PRIMARY KEY,
-    email VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
     solicitante INTEGER,
     tokenInvite VARCHAR(255),
     creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -27,17 +27,17 @@ CREATE TABLE invite (
 );
 
 CREATE TABLE review (
-    id SERIAL PRIMARY KEY,
-    review TEXT,
-    comentario TEXT,
-    sentimento VARCHAR(255),
-    titulo VARCHAR(255),
-    estado VARCHAR(255),
-    cidade VARCHAR(255),
-    rua VARCHAR(255),
-    lat NUMERIC,
-    long NUMERIC,
-    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    review_id VARCHAR(255) PRIMARY KEY,
+	review_score VARCHAR(255),
+	review_comment_title VARCHAR(255),
+	review_comment_message VARCHAR(255),
+	review_creation_date TIMESTAMP,
+	review_answer_timestamp TIMESTAMP,
+	product_id VARCHAR(255),
+	geolocation_lat NUMERIC,
+	geolocation_lng NUMERIC,
+	sentiment VARCHAR(255),
+	creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE alteracao_campo (
@@ -45,7 +45,6 @@ CREATE TABLE alteracao_campo (
     idUser INTEGER,
     idAdmin INTEGER,
     novoUsername VARCHAR(255),
-    novoPassword VARCHAR(255),
     novoNome VARCHAR(255),
     novoEmail VARCHAR(255),
     novoCelular VARCHAR(255),
@@ -53,7 +52,9 @@ CREATE TABLE alteracao_campo (
     status VARCHAR(20), 
     dataAprovacao TIMESTAMP, 
     dataRejeicao TIMESTAMP, 
-    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    creationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    CONSTRAINT fk_alteracao_campo_idUser FOREIGN KEY (idUser) REFERENCES app_user(id) ON DELETE CASCADE,
+    CONSTRAINT fk_alteracao_campo_idAdmin FOREIGN KEY (idAdmin) REFERENCES app_user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE termo (
