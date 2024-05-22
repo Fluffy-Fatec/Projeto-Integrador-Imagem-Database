@@ -9,6 +9,7 @@ SELECT * FROM app_user;
 SELECT * FROM  palavra;
 SELECT * FROM  notificacao;
 SELECT * FROM  notificacao_termo;
+
 ----------------------------------------------------------------------------------------
 
 -- VERIFICAR TODAS AS FUNCTIONS / TRIGGER SE ESTÃO CRIADAS
@@ -152,9 +153,7 @@ CREATE TABLE notificacao_termo (
 --flag_notificacao 1 sim / 0 não
 ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-
 --FUNCTION E TRIGGERS - NOTIFICAÇÃO
-
 DROP FUNCTION IF EXISTS function_notificacao_admin();
 CREATE OR REPLACE FUNCTION function_notificacao_admin()
 RETURNS TRIGGER AS $$
@@ -391,6 +390,8 @@ VALUES
 (11, 24, 10, NULL, 'Admin', 'User Victor Fernandes requested a data change on 24/04/2024 15:23:09', '0'),
 (12, 24, 10, 1, 'User', 'Update completed successfully on 24/04/2024 15:23:29', '0'),
 (13, 25, 11, NULL, 'Admin', 'User Tiago Camilo requested a data change on 24/04/2024 15:41:49', '0');
+
+
 
 
 -- SELECT * FROM status_termo;
